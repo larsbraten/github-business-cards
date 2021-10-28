@@ -1,6 +1,10 @@
 import "./App.css";
 import "./style.css";
 import React from "react";
+import * as htmlToImage from "html-to-image";
+import download from "downloadjs";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
+
 function App() {
   return (
     <div className="App">
@@ -15,10 +19,42 @@ function App() {
         <form id="form">
           <input type="text" id="search" placeholder="Search a Github User" />
         </form>
-        <main id="main"></main>
+        <main id="main">
+          <div class="card">
+            <div>
+              <img
+                class="avatar"
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                alt="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              />
+            </div>
+            <div class="user-info">
+              <h2>Username</h2>
+              <p>Bio</p>
+              <ul class="info">
+                <li>
+                  Followers<strong>Followers</strong>
+                </li>
+                <li>
+                  Following<strong>Following</strong>
+                </li>
+                <li>
+                  Repos<strong>Repos</strong>
+                </li>
+              </ul>
+              <div id="repos"></div>
+            </div>
+          </div>
+        </main>
+        <button onClick={downloadBusinessCard}>Download Card</button>
       </body>
     </div>
   );
+  function downloadBusinessCard() {
+    htmlToImage.toPng(document.getElementById("form")).then(function (dataUrl) {
+      download(dataUrl, "my-node.png");
+    });
+  }
 }
 
 window.onload = () => {
@@ -46,25 +82,26 @@ window.onload = () => {
 
   function createUserCard(user) {
     const cardHTML = `
-          <div class="card">
-              <div>
-                  <img class="avatar" src="${user.avatar_url}" alt="${user.name}" />
-              </div>
-              <div class="user-info">
-                  <h2>${user.name}</h2>
-                  <p>${user.bio}</p>
-                  <ul class="info">
-                      <li>${user.followers}<strong>Followers</strong></li>
-                      <li>${user.following}<strong>Following</strong></li>
-                      <li>${user.public_repos}<strong>Repos</strong></li>
-                  </ul>
-                  <div id="repos"></div>
-              </div>
-          </div>
-      `;
+        <div class="card">
+            <div>
+                <img class="avatar" src="${user.avatar_url}" alt="${user.name}" />
+            </div>
+            <div class="user-info">
+                <h2>${user.name}</h2>
+                <p>${user.bio}</p>
+                <ul class="info">
+                    <li>${user.followers}<strong>Followers</strong></li>
+                    <li>${user.following}<strong>Following</strong></li>
+                    <li>${user.public_repos}<strong>Repos</strong></li>
+                </ul>
+                <div id="repos"></div>
+            </div>
+        </div>
+    `;
 
     main.innerHTML = cardHTML;
   }
+
   function addReposToCard(repos) {
     const reposEl = document.getElementById("repos");
 
