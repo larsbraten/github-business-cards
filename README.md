@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+# github-business-cards
+
+## Downloadable business cards based on your git profile
+
+### Using React with the github API
+
+>>>>>>> f2940bb017ba7cd2083ebf1a7f8e291bac358871
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
