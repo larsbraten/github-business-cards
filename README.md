@@ -1,6 +1,6 @@
 # github-business-cards
 
-## Downloadable business cards based on your git profile
+## Downloadable business cards based on your git profile. Fun little project.
 
 ### Using React with the github API
 
