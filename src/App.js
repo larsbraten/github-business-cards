@@ -13,7 +13,6 @@ function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Github Profiles</title>
         <link rel="stylesheet" href="style.css" />
-        <script src="script.js" defer></script>
       </head>
       <body>
         <form id="form">
@@ -46,12 +45,14 @@ function App() {
             </div>
           </div>
         </main>
-        <button onClick={downloadBusinessCard}>Download Card</button>
+        <button class="button" onClick={downloadBusinessCard}>
+          Download Card
+        </button>
       </body>
     </div>
   );
   function downloadBusinessCard() {
-    htmlToImage.toPng(document.getElementById("form")).then(function (dataUrl) {
+    htmlToImage.toPng(document.getElementById("main")).then(function (dataUrl) {
       download(dataUrl, "my-node.png");
     });
   }

@@ -3,6 +3,11 @@
 * {
   box-sizing: border-box;
 }
+.button {
+  background-color: #4c2885;
+  display: flex;
+  margin-top: 8px;
+}
 
 body {
   background-color: #2a2a72;
